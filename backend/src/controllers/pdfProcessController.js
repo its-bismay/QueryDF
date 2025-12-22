@@ -17,7 +17,7 @@ export const uploadPDF = async (req, res) => {
     return res.status(200).json({
       success: true,
       url: result.secure_url,
-      public_id: result.public_id,
+      pdf_name: pdfName,
     });
 
   } catch (error) {
