@@ -1,6 +1,6 @@
 import { QdrantClient } from "@qdrant/js-client-rest";
 import crypto from "crypto";
-import ENV from "../lib/envConfig";
+import ENV from "../lib/envConfig.js";
 
 
 const client = new QdrantClient({
