@@ -1,3 +1,4 @@
+import { inngest } from "../inngest/inngestClient.js";
 import { uploadToCloudinary } from "../lib/cloudinary.js";
 
 export const uploadPDF = async (req, res) => {
@@ -13,10 +14,18 @@ export const uploadPDF = async (req, res) => {
       .replace(/^_|_$/g, "");
 
     const result = await uploadToCloudinary(req.file, pdfName);
+    const pdfUrl = result.secure_url;
+      await inngest.send({
+      name: "pdf/process",
+      data: {
+        filePath: pdfUrl,
+        pdfName,
+      },
+    });
 
     return res.status(200).json({
       success: true,
-      url: result.secure_url,
+      url: pdfUrl,
       pdf_name: pdfName,
     });
 
