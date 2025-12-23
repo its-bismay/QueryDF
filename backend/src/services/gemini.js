@@ -1,5 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
-import ENV from "../lib/envConfig";
+import ENV from "../lib/envConfig.js";
 
 const ai = new GoogleGenAI({apiKey: ENV.geminiApiKey})
 
