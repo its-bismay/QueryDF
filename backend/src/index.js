@@ -2,6 +2,7 @@ import express from "express"
 import { serve } from "inngest/express";
 import { pdfProcessRouter } from "./routes/pdfProcessRoute.js";
 import { functions, inngest } from "./inngest/inngestClient.js";
+import { queryRouter } from "./routes/queryRoute.js";
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.get("/", (_req, res) => {
 app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.use("/api", pdfProcessRouter)
+app.use("/api", queryRouter)
 
 export default app;
