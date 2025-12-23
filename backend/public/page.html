@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryDF API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .endpoint {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+        
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .method {
+            background: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+        
+        .method.post {
+            background: #667eea;
+        }
+        
+        .url {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .description {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+        
+        .flow-diagram {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            color: #555;
+        }
+        
+        .arrow {
+            text-align: center;
+            color: #667eea;
+            font-size: 1.5em;
+            margin: 5px 0;
+            margin-left: 17px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tech-badge {
+            background: #e9ecef;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #495057;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 QueryPDF API</h1>
+            <p>Intelligent PDF Question Answering System</p>
+        </header>
+        
+        <div class="content">
+            <!-- Overview Section -->
+            <div class="section">
+                <h2>🎯 Overview</h2>
+                <p>QueryPDF is an AI-powered API that allows you to upload PDF documents and ask questions about their content. The system uses advanced vector embeddings and semantic search to provide accurate, context-aware answers.</p>
+            </div>
+            
+            <!-- How It Works -->
+            <div class="section">
+                <h2>⚙️ How It Works</h2>
+                
+                <h3 style="color: #764ba2; margin: 25px 0 15px 0;">Upload Process</h3>
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">PDF uploaded to <span class="highlight">Cloudinary</span> for storage</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Text extracted using <span class="highlight">unpdf</span></div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Text split into chunks using <span class="highlight">LangChain TextSplitter</span></div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Chunks converted to vector embeddings using <span class="highlight">Jina AI</span></div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Embeddings stored in <span class="highlight">Qdrant Vector Database</span></div>
+                    </div>
+                </div>
+                
+                <h3 style="color: #764ba2; margin: 25px 0 15px 0;">Query Process</h3>
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">User query converted to embedding using <span class="highlight">Jina AI</span></div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Semantic search in <span class="highlight">Qdrant</span> for relevant chunks</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Retrieved chunks used as context for <span class="highlight">Gemini AI</span></div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">AI generates accurate, context-aware answer</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technology Stack -->
+            <div class="section">
+                <h2>🛠️ Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-badge">Cloudinary</div>
+                    <div class="tech-badge">unpdf</div>
+                    <div class="tech-badge">LangChain</div>
+                    <div class="tech-badge">Jina AI Embeddings</div>
+                    <div class="tech-badge">Qdrant Vector DB</div>
+                    <div class="tech-badge">Google Gemini</div>
+                    <div class="tech-badge">Node.js</div>
+                    <div class="tech-badge">Express</div>
+                </div>
+            </div>
+            
+            <!-- API Endpoints -->
+            <div class="section">
+                <h2>🔌 API Endpoints</h2>
+                
+                <!-- Upload Endpoint -->
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="url">/api/upload</span>
+                    </div>
+                    <div class="description">
+                        Upload a PDF document for processing and indexing.
+                    </div>
+                    <strong>Request:</strong>
+                    <div class="code-block">POST /api/upload
+Content-Type: multipart/form-data
+
+pdf: [PDF File]</div>
+                    
+                    <strong>Response:</strong>
+                    <div class="code-block">{
+  "success": true,
+  "url": "https://res.cloudinary.com/...",
+  "pdf_name": "teams_todo_assignment"
+}</div>
+                </div>
+                
+                <!-- Query Endpoint -->
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="url">/api/query</span>
+                    </div>
+                    <div class="description">
+                        Ask questions about an uploaded PDF document.
+                    </div>
+                    <strong>Request:</strong>
+                    <div class="code-block">POST /api/query
+Content-Type: application/json
+
+{
+  "query": "What is this PDF about?",
+  "pdfName": "teams_todo_assignment"
+}</div>
+                    
+                    <strong>Response:</strong>
+                    <div class="code-block">{
+  "answer": "This PDF is about an assignment to build...",
+  "sources": [
+    {
+      "sourceId": 1,
+      "chunkIndex": 0,
+      "source": "https://res.cloudinary.com/...",
+      "score": 0.22112079,
+      "text": "Teams ToDo Build a collaborative..."
+    }
+  ]
+}</div>
+                </div>
+            </div>
+            
+            <!-- Example Usage -->
+            <div class="section">
+                <h2>💡 Example Usage</h2>
+                
+                <h3 style="color: #764ba2; margin: 20px 0 15px 0;">1. Upload a PDF</h3>
+                <div class="code-block">curl -X POST https://query-df-server.vercel.app/api/upload \
+  -F "pdf=@document.pdf"</div>
+                
+                <h3 style="color: #764ba2; margin: 20px 0 15px 0;">2. Query the PDF</h3>
+                <div class="code-block">curl -X POST https://query-df-server.vercel.app/api/query \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "What are the main features?",
+    "pdfName": "document"
+  }'</div>
+            </div>
+            
+            <!-- Features -->
+            <div class="section">
+                <h2>✨ Features</h2>
+                <div class="flow-diagram">
+                    <div style="margin-bottom: 15px;">✅ <strong>Semantic Search:</strong> Find relevant information using meaning, not just keywords</div>
+                    <div style="margin-bottom: 15px;">✅ <strong>Context-Aware:</strong> AI understands the context of your questions</div>
+                    <div style="margin-bottom: 15px;">✅ <strong>Source Citations:</strong> Get references to original PDF sections</div>
+                    <div style="margin-bottom: 15px;">✅ <strong>Fast Processing:</strong> Efficient vector search for quick responses</div>
+                    <div style="margin-bottom: 15px;">✅ <strong>Scalable:</strong> Cloud-based storage and vector database</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Built with ❤️ using AI & Vector Search Technology</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Base URL: <code>https://query-df-server.vercel.app</code></p>
+        </footer>
+    </div>
+</body>
+</html>
