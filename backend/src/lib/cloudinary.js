@@ -12,7 +12,7 @@ export const uploadToCloudinary = async (file, pdfName) => {
     cloudinary.uploader
       .upload_stream(
         {
-          resource_type: "image",   
+          resource_type: "raw",   
           folder: "QueryDF",
           public_id: `${Date.now()}_${pdfName}`,
         },

@@ -15,6 +15,7 @@ export const uploadPDF = async (req, res) => {
 
     const result = await uploadToCloudinary(req.file, pdfName);
     const pdfUrl = result.secure_url;
+    
       await inngest.send({
       name: "pdf/process",
       data: {
