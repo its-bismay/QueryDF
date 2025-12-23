@@ -1,6 +1,6 @@
 import pdfParse from "pdf-parse"
 
-const fromatText = (txt) => {
+const formatText = (txt) => {
   return txt
     // remove page footers like "-- 1 of 1 --"
     .replace(/--\s*\d+\s*of\s*\d+\s*--/gi, " ")
