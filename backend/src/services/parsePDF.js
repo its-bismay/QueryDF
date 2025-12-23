@@ -1,4 +1,4 @@
-import { PDFExtract } from 'pdf.js-extract';
+import { extractText } from 'unpdf';
 
 const formatText = (txt) => {
   return txt
@@ -19,15 +19,9 @@ export async function extractTextFromPDF(filePath) {
     }
     
     const arrayBuffer = await response.arrayBuffer();
-    const dataBuffer = Buffer.from(arrayBuffer);
     
-    const pdfExtract = new PDFExtract();
-    const data = await pdfExtract.extractBuffer(dataBuffer);
-    
-    // Combine text from all pages
-    const text = data.pages
-      .map(page => page.content.map(item => item.str).join(' '))
-      .join('\n');
+    // Extract text using unpdf
+    const { text } = await extractText(arrayBuffer, { mergePages: true });
     
     const formattedText = formatText(text);
     return formattedText;
