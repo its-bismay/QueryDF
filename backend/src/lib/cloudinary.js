@@ -15,6 +15,7 @@ export const uploadToCloudinary = async (file, pdfName) => {
           resource_type: "raw",   
           folder: "QueryDF",
           public_id: `${Date.now()}_${pdfName}`,
+          flags: "attachment:false"
         },
         (err, res) => {
           if (err) reject(err);

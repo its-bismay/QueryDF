@@ -63,7 +63,7 @@ export async function storePdfEmbeddings({
 export async function searchPdf({
   pdfName,
   queryVector,
-  limit = 5,
+  limit = 3,
 }) {
   const result = await client.search(pdfName, {
     vector: queryVector,
